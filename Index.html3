@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FASTTRACK EXPRESS</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:#eef3f8;
+}
+
+header{
+background:#0047AB;
+color:white;
+text-align:center;
+padding:60px 20px;
+}
+
+header h1{
+font-size:50px;
+}
+
+header p{
+font-size:22px;
+margin-top:10px;
+}
+
+nav{
+background:#005fd4;
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+padding:18px 25px;
+font-size:20px;
+}
+
+nav a:hover{
+background:white;
+color:#005fd4;
+}
+
+.container{
+width:90%;
+margin:auto;
+}
+
+.card{
+background:white;
+margin-top:30px;
+padding:30px;
+border-radius:12px;
+box-shadow:0 0 15px rgba(0,0,0,.15);
+}
+
+h2{
+color:#0047AB;
+margin-bottom:20px;
+text-align:center;
+}
+
+input{
+width:100%;
+padding:18px;
+font-size:20px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+button{
+margin-top:20px;
+width:100%;
+padding:18px;
+font-size:20px;
+background:#0047AB;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+button:hover{
+background:#00327d;
+}
+
+#result{
+margin-top:30px;
+}
+
+.services{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.box{
+background:#f8f8f8;
+padding:25px;
+width:220px;
+text-align:center;
+border-radius:10px;
+box-shadow:0 0 10px silver;
+}
+
+.stats{
+display:flex;
+justify-content:space-around;
+flex-wrap:wrap;
+text-align:center;
+}
+
+.stat{
+font-size:35px;
+font-weight:bold;
+color:#0047AB;
+}
+
+@media(max-width:768px){
+
+header h1{
+font-size:35px;
+}
+
+nav{
+flex-direction:column;
+}
+
+.services{
+flex-direction:column;
+align-items:center;
+}
+
+.stats{
+flex-direction:column;
+gap:20px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header id="home">
+
+<h1>FASTTRACK EXPRESS</h1>
+
+<p>Worldwide Shipping & Logistics</p>
+
+</header>
+
+<nav>
+
+<a href="#home">Home</a>
+
+<a href="#track">Track</a>
+
+<a href="#services">Services</a>
+
+<a href="#contact">Contact</a>
+
+</nav>
+
+<div class="container">
+
+<div class="card" id="track">
+
+<h2>Track Your Shipment</h2>
+
+<input
+id="trackNumber"
+placeholder="Enter Tracking Number">
+
+<button onclick="trackPackage()">
+
+Track Package
+
+</button>
+
+<div id="result"></div>
+
+</div>
+
+<div class="card">
+
+<h2>Shipment History</h2>
+
+<p>📦 Package Received</p>
+
+<p>✈ Flight Departed</p>
+
+<p>🌍 Customs Cleared</p>
+
+<p>🚚 Out For Delivery</p>
+
+</div>
+
+<div class="card" id="services">
+
+<h2>Our Services</h2>
+
+<div class="services">
+
+<div class="box">
+<h3>✈ Air Freight</h3>
+<p>Fast international shipping.</p>
+</div>
+
+<div class="box">
+<h3>🚢 Sea Freight</h3>
+<p>Affordable worldwide cargo.</p>
+</div>
+
+<div class="box">
+<h3>🚚 Ground Delivery</h3>
+<p>Reliable road transport.</p>
+</div>
+
+<div class="box">
+<h3>📦 Door To Door</h3>
+<p>Pickup and delivery service.</p>
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Company Statistics</h2>
+
+<div class="stats">
+
+<div>
+
+<div class="stat">250,000+</div>
+
+Packages Delivered
+
+</div>
+
+<div>
+
+<div class="stat">120+</div>
+
+Countries Served
+
+</div>
+
+<div>
+
+<div class="stat">98%</div>
+
+Customer Satisfaction
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Customer Reviews</h2>
+
+<p>⭐⭐⭐⭐⭐ Excellent service. My shipment arrived safely.</p>
+
+<br>
+
+<p>⭐⭐⭐⭐⭐ Fast delivery and accurate tracking.</p>
+
+<br>
+
+<p>⭐⭐⭐⭐⭐ Highly recommended worldwide courier.</p>
+
+</div>
+
+<div class="card">
+
+<h2>Current Date & Time</h2>
+
+<p id="clock" style="font-size:28px;text-align:center;color:#0047AB;"></p>
+
+</div>
+
+</div>
+
+<footer id="contact">
+
+<h2>Contact Us</h2>
+
+<p>📞 +66886238130 </p>
+
+
+
+<p>📍 53 Shipping Avenue, Amsterdam Netherland </p>
+
+<p>&copy; 2026 FASTTRACK EXPRESS. All Rights Reserved.</p>
+
+</footer>
+
+<script>
+
+function trackPackage(){
+
+let code=document.getElementById("trackNumber").value.toUpperCase();
+
+let result=document.getElementById("result");
+
+if(code=="FT123456789"){
+
+result.innerHTML=`
+
+<div style="background:#f5f5f5;padding:20px;border-radius:10px;">
+
+<h2 style="color:#0047AB;">Shipment Details</h2>
+
+<hr>
+
+<p><b>Tracking Number:</b> FT123456789</p>
+
+<p><b>Recipient:</b> Kannika Duangkhaisorn </p>
+
+<p><b>Phone:</b> 0966764226</p>
+
+
+
+<p><b>Origin:</b> Netherland </p>
+
+<p><b>Destination:</b> Bangok Thailand </p>
+
+<p><b>Delivery Address:</b> Bang Bon South Subdistrict
+Bang Bon District
+10150
+Bangkok
+</p>
+
+<p><b>Package:</b> Bags, Shoes, Golden watch,Iphone 14 promax </p>
+
+<p><b>Weight:</b> 2.5 kg</p>
+
+<p><b>Status:</b>
+<span style="color:green;font-weight:bold;">
+Delivered Successfully
+</span></p>
+
+<p><b>Delivery Date:</b> 19th June 2026</p>
+
+</div>
+
+`;
+
+}
+
+else if(code=="FT987654321"){
+
+result.innerHTML=`
+
+<div style="background:#f5f5f5;padding:20px;border-radius:10px;">
+
+<h2 style="color:#0047AB;">Shipment Details</h2>
+
+<hr>
+
+<p><b>Tracking Number:</b> FT987654321</p>
+
+<p><b>Recipient:</b>  Williams Mikey </p>
+
+
+<p><b>Destination:</b> Bangkok, Thailand</p>
+
+<p><b>Delivery Address:</b> ถนนสุขุมวิท 25, Bangkok</p>
+
+<p><b>Package:</b> Bags, Shoes, Golden watch,Iphone 14 promax
+
+<p><b>Weight:</b> 1.2 kg</p>
+
+<p><b>Status:</b>
+
+<span style="color:blue;font-weight:bold;">
+
+Custom Hold 
+
+</span>
+
+</p>
+
+<p><b>Estimated Custom Hold :</b> 5 July 2026</p>
+
+</div>
+
+`;
+
+}
+
+else{
+
+result.innerHTML="<h2 style='color:red;text-align:center;'>❌ Tracking Number Not Found</h2>";
+
+}
+
+}
+
+function updateClock(){
+
+let now=new Date();
+
+document.getElementById("clock").innerHTML=
+
+now.toLocaleDateString()+"<br>"+now.toLocaleTimeString();
+
+}
+
+setInterval(updateClock,1000);
+
+updateClock();
+
+</script>
+
+</body>
+
+</html>
